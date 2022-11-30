@@ -81,7 +81,7 @@ class CertificateConfigData:
 
     Arguments:
         certificate_type (str): certificate type.
-        course_key (str): identifier of the course to which the certificate config belongs.
+        course_id (str): identifier of the course to which the certificate config belongs.
         title (str): certificate title.
         signatories (List[CertificateSignatoryData]): contains a collection of signatures
         that belong to the certificate configuration.
@@ -89,7 +89,7 @@ class CertificateConfigData:
     """
 
     certificate_type = attr.ib(type=str)
-    course_key = attr.ib(type=CourseKey)
+    course_id = attr.ib(type=str)
     title = attr.ib(type=str)
     signatories = attr.ib(type=List[CertificateSignatoryData])
     is_active = attr.ib(type=bool, default=False)
