@@ -8,7 +8,7 @@ The attributes for the events come from the CourseDetailView in the LMS, with so
 (see deprecation proposal at https://github.com/openedx/public-engineering/issues/160)
 """
 from datetime import datetime
-
+from typing import BinaryIO, List
 import attr
 from opaque_keys.edx.keys import CourseKey
 
@@ -54,3 +54,42 @@ class CourseCatalogData:
     schedule_data = attr.ib(type=CourseScheduleData)
     hidden = attr.ib(type=bool, default=False)
     invitation_only = attr.ib(type=bool, default=False)
+
+
+@attr.s(frozen=True)
+class CertificateSignatoryData:
+    """
+    Attributes defined for Open edX CertificateSignatory data object.
+
+    Arguments:
+        image (BinaryIO): certificate signature image.
+        name (str): name of signatory.
+        organization (str): organization that signatory belongs to.
+        title (int): signatory title.
+    """
+
+    image = attr.ib(type=BinaryIO)
+    name = attr.ib(type=str)
+    organization = attr.ib(type=str)
+    title = attr.ib(type=str)
+
+
+@attr.s(frozen=True)
+class CertificateConfigData:
+    """
+    Attributes defined for Open edX CertificateConfig data object.
+
+    Arguments:
+        certificate_type (str): certificate type.
+        course_id (str): identifier of the course to which the certificate config belongs.
+        title (str): certificate title.
+        signatories (List[CertificateSignatoryData]): contains a collection of signatures
+        that belong to the certificate configuration.
+        is_active (bool): indicates whether the certifivate configuration is active.
+    """
+
+    certificate_type = attr.ib(type=str)
+    course_id = attr.ib(type=str)
+    title = attr.ib(type=str)
+    signatories = attr.ib(type=List[CertificateSignatoryData])
+    is_active = attr.ib(type=bool, default=False)
