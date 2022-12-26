@@ -80,8 +80,10 @@ class CertificateConfigData:
     Attributes defined for Open edX CertificateConfig data object.
 
     Arguments:
-        certificate_type (str): certificate type.
-        course_id (str): identifier of the course to which the certificate config belongs.
+        certificate_type (str): certificate type. Possible types are certificate relevant course modes such as credit,
+        verified, professional, no-id-professional, executive-education,  paid-executive-education,
+        paid-bootcamp, masters.
+        course_key (CourseKey): identifier of the Course object.
         title (str): certificate title.
         signatories (List[CertificateSignatoryData]): contains a collection of signatures
         that belong to the certificate configuration.
@@ -89,7 +91,7 @@ class CertificateConfigData:
     """
 
     certificate_type = attr.ib(type=str)
-    course_id = attr.ib(type=str)
+    course_key = attr.ib(type=CourseKey)
     title = attr.ib(type=str)
     signatories = attr.ib(type=List[CertificateSignatoryData])
     is_active = attr.ib(type=bool, default=False)
