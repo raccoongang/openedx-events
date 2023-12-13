@@ -19,6 +19,7 @@ from openedx_events.learning.data import (
     ManageStudentsPermissionData,
     PersistentCourseGradeData,
     ProgramCertificateData,
+    UserCourseData,
     UserData,
     UserNotificationData,
     XBlockSkillVerificationData,
@@ -325,5 +326,27 @@ COURSE_NOTIFICATION_REQUESTED = OpenEdxPublicSignal(
     event_type="org.openedx.learning.course.notification.requested.v1",
     data={
         "course_notification_data": CourseNotificationData,
+    }
+)
+
+# .. event_type: org.openedx.learning.course.grade.now.passed.v1
+# .. event_name: COURSE_GRADE_NOW_PASSED
+# .. event_description: Emmited when course grade is passed.
+# .. event_data: UserCourseData
+COURSE_GRADE_NOW_PASSED = OpenEdxPublicSignal(
+    event_type="org.openedx.learning.course.grade.now.passed.v1",
+    data={
+        "user_course_data": UserCourseData,
+    }
+)
+
+# .. event_type: org.openedx.learning.course.grade.now.failed.v1
+# .. event_name: COURSE_GRADE_NOW_FAILED
+# .. event_description: Emmited when course grade is failed.
+# .. event_data: UserCourseData
+COURSE_GRADE_NOW_FAILED = OpenEdxPublicSignal(
+    event_type="org.openedx.learning.course.grade.now.failed.v1",
+    data={
+        "user_course_data": UserCourseData,
     }
 )
