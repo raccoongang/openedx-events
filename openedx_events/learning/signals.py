@@ -23,6 +23,7 @@ from openedx_events.learning.data import (
     UserData,
     UserNotificationData,
     XBlockSkillVerificationData,
+    UserCourseData,
 )
 from openedx_events.tooling import OpenEdxPublicSignal
 
