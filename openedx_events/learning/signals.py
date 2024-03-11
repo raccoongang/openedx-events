@@ -10,6 +10,7 @@ docs/decisions/0003-events-payload.rst
 
 from openedx_events.learning.data import (
     BadgeData,
+    CcxCourseData,
     CertificateData,
     CohortData,
     CourseAccessRoleData,
@@ -375,9 +376,22 @@ BADGE_REVOKED = OpenEdxPublicSignal(
     }
 )
 
+
+# .. event_type: org.openedx.learning.ccx.course.grade.now.passed.v1
+# .. event_name: CCX_COURSE_GRADE_NOW_PASSED
+# .. event_description: Emit when a ccx course grade is passed
+# .. event_data: CcxCourseData
+CCX_COURSE_GRADE_NOW_PASSED = OpenEdxPublicSignal(
+    event_type="org.openedx.learning.ccx.course.grade.now.passed.v1",
+    data={
+        "ccx_course": CcxCourseData,
+    }
+)
+
+
 # .. event_type: org.openedx.learning.ccx.course.grade.now.failed.v1
 # .. event_name: CCX_COURSE_GRADE_NOW_FAILED
-# .. event_description: Emit when a ccx course grade failed
+# .. event_description: Emit when a ccx course grade is failed
 # .. event_data: CcxCourseData
 CCX_COURSE_GRADE_NOW_FAILED = OpenEdxPublicSignal(
     event_type="org.openedx.learning.ccx.course.grade.now.failed.v1",
