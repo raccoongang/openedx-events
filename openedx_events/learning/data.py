@@ -511,8 +511,7 @@ class CcxCourseData(CourseData):
     max_students_allowed = attr.ib(type=int)
     coach = attr.ib(type=UserData)
 
-    # copypasted from CourseData to avoid `ValueError: No mandatory attributes allowed after an attribute with a default value or factory.`
+    # copypasted from CourseData to avoid ValueError
     display_name = attr.ib(type=str, factory=str)
     start = attr.ib(type=datetime, default=None)
     end = attr.ib(type=datetime, default=None)
-    
