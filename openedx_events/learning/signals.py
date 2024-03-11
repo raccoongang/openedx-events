@@ -374,3 +374,14 @@ BADGE_REVOKED = OpenEdxPublicSignal(
         "badge": BadgeData,
     }
 )
+
+# .. event_type: org.openedx.learning.ccx.course.grade.now.failed.v1
+# .. event_name: CCX_COURSE_GRADE_NOW_FAILED
+# .. event_description: Emit when a ccx course grade failed
+# .. event_data: CcxCourseData
+CCX_COURSE_GRADE_NOW_FAILED = OpenEdxPublicSignal(
+    event_type="org.openedx.learning.ccx.course.grade.now.failed.v1",
+    data={
+        "ccx_course": CcxCourseData,
+    }
+)
