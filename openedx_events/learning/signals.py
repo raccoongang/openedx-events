@@ -10,18 +10,18 @@ docs/decisions/0003-events-payload.rst
 
 from openedx_events.learning.data import (
     BadgeData,
-    CcxCourseData,
+    CcxCourseGradeThresholdCrossingData,
     CertificateData,
     CohortData,
     CourseAccessRoleData,
     CourseDiscussionConfigurationData,
     CourseEnrollmentData,
+    CourseGradeThresholdCrossingData,
     CourseNotificationData,
     DiscussionThreadData,
     ExamAttemptData,
     PersistentCourseGradeData,
     ProgramCertificateData,
-    UserCourseData,
     UserData,
     UserNotificationData,
     XBlockSkillVerificationData,
@@ -343,24 +343,49 @@ COURSE_NOTIFICATION_REQUESTED = OpenEdxPublicSignal(
 # .. event_type: org.openedx.learning.course.grade.now.passed.v1
 # .. event_name: COURSE_GRADE_NOW_PASSED
 # .. event_description: Emmited when course grade is passed.
-# .. event_data: UserCourseData
+# .. event_data: CourseGradeThresholdCrossingData
 COURSE_GRADE_NOW_PASSED = OpenEdxPublicSignal(
     event_type="org.openedx.learning.course.grade.now.passed.v1",
     data={
-        "user_course_data": UserCourseData,
+        "course_grade_threshold_crossing": CourseGradeThresholdCrossingData,
     }
 )
 
 # .. event_type: org.openedx.learning.course.grade.now.failed.v1
 # .. event_name: COURSE_GRADE_NOW_FAILED
 # .. event_description: Emmited when course grade is failed.
-# .. event_data: UserCourseData
+# .. event_data: CourseGradeThresholdCrossingData
 COURSE_GRADE_NOW_FAILED = OpenEdxPublicSignal(
     event_type="org.openedx.learning.course.grade.now.failed.v1",
     data={
-        "user_course_data": UserCourseData,
+        "course_grade_threshold_crossing": CourseGradeThresholdCrossingData,
     }
 )
+
+
+# .. event_type: org.openedx.learning.ccx.course.grade.now.passed.v1
+# .. event_name: CCX_COURSE_GRADE_NOW_PASSED
+# .. event_description: Emit when a ccx course grade is passed
+# .. event_data: CcxCourseGradeThresholdCrossingData
+CCX_COURSE_GRADE_NOW_PASSED = OpenEdxPublicSignal(
+    event_type="org.openedx.learning.ccx.course.grade.now.passed.v1",
+    data={
+        "course_grade_threshold_crossing": CcxCourseGradeThresholdCrossingData,
+    }
+)
+
+
+# .. event_type: org.openedx.learning.ccx.course.grade.now.failed.v1
+# .. event_name: CCX_COURSE_GRADE_NOW_FAILED
+# .. event_description: Emit when a ccx course grade is failed
+# .. event_data: CcxCourseGradeThresholdCrossingData
+CCX_COURSE_GRADE_NOW_FAILED = OpenEdxPublicSignal(
+    event_type="org.openedx.learning.ccx.course.grade.now.failed.v1",
+    data={
+        "course_grade_threshold_crossing": CcxCourseGradeThresholdCrossingData,
+    }
+)
+
 
 # .. event_type: org.openedx.learning.badge.awarded.v1
 # .. event_name: BADGE_AWARDED
@@ -382,29 +407,5 @@ BADGE_REVOKED = OpenEdxPublicSignal(
     event_type="org.openedx.learning.badge.revoked.v1",
     data={
         "badge": BadgeData,
-    }
-)
-
-
-# .. event_type: org.openedx.learning.ccx.course.grade.now.passed.v1
-# .. event_name: CCX_COURSE_GRADE_NOW_PASSED
-# .. event_description: Emit when a ccx course grade is passed
-# .. event_data: CcxCourseData
-CCX_COURSE_GRADE_NOW_PASSED = OpenEdxPublicSignal(
-    event_type="org.openedx.learning.ccx.course.grade.now.passed.v1",
-    data={
-        "ccx_course": CcxCourseData,
-    }
-)
-
-
-# .. event_type: org.openedx.learning.ccx.course.grade.now.failed.v1
-# .. event_name: CCX_COURSE_GRADE_NOW_FAILED
-# .. event_description: Emit when a ccx course grade is failed
-# .. event_data: CcxCourseData
-CCX_COURSE_GRADE_NOW_FAILED = OpenEdxPublicSignal(
-    event_type="org.openedx.learning.ccx.course.grade.now.failed.v1",
-    data={
-        "ccx_course": CcxCourseData,
     }
 )
