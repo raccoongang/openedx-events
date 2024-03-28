@@ -8,6 +8,7 @@ from datetime import datetime
 from typing import List, Optional
 
 import attr
+from attr.validators import in_
 from ccx_keys.locator import CCXLocator
 from opaque_keys.edx.keys import CourseKey, UsageKey
 
@@ -472,7 +473,7 @@ class CourseNotificationData:
 
 
 @attr.s(frozen=True)
-class CourseGradeThresholdCrossingData:
+class CoursePassingStatusData:
     """
     Represents the event data when a user's grade crosses a grading policy threshold in a course.
 
@@ -482,24 +483,28 @@ class CourseGradeThresholdCrossingData:
         update_timestamp (datetime): The timestamp when the grade crossing event was recorded.
         grading_policy_hash (str): A hash of the course's grading policy at the time of the event, used for verifying the grading policy has not changed.
     """
+    PASSING = 'passing'
+    FAILING = 'failing'
+    STATUSES = [PASSING, FAILING]
 
-    user = attr.ib(type=UserData)
+    status = attr.ib(type=str, validator=in_(STATUSES))
     course = attr.ib(type=CourseData)
+    user = attr.ib(type=UserData)
     update_timestamp = attr.ib(type=datetime)
     grading_policy_hash = attr.ib(type=str)
 
 
 @attr.s(frozen=True)
-class CcxCourseGradeThresholdCrossingData(CourseGradeThresholdCrossingData):
+class CcxCoursePassingStatusData(CoursePassingStatusData):
     """
-    Extends CourseGradeThresholdCrossingData for CCX courses, specifying CCX course data.
+    Extends CoursePassingStatusData for CCX courses, specifying CCX course data.
 
     This class is used for events where a user's grade crosses a threshold specifically in a CCX course,
     providing a custom course attribute suited for CCX course instances.
 
     Attributes:
         course (CcxCourseData): An instance of CcxCourseData containing details about the CCX course in which the grade threshold was crossed.
-        All other attributes are inherited from CourseGradeThresholdCrossingData.
+        All other attributes are inherited from CoursePassingStatusData.
     """
     course = attr.ib(type=CcxCourseData)
 
