@@ -340,24 +340,24 @@ COURSE_NOTIFICATION_REQUESTED = OpenEdxPublicSignal(
     }
 )
 
-# .. event_type: org.openedx.learning.course.passing.status.v1
+# .. event_type: org.openedx.learning.course.passing.status.updated.v1
 # .. event_name: COURSE_PASSING_STATUS_UPDATED
-# .. event_description: Emitted when course grade updates.
+# .. event_description: Emitted when course grade updates. Carries current course passing status for learner.
 # .. event_data: CoursePassingStatusData
 COURSE_PASSING_STATUS_UPDATED = OpenEdxPublicSignal(
-    event_type="org.openedx.learning.course.passing.status.v1",
+    event_type="org.openedx.learning.course.passing.status.updated.v1",
     data={
         "course_passing_status": CoursePassingStatusData,
     }
 )
 
 
-# .. event_type: org.openedx.learning.ccx.course.passing.status.v1
+# .. event_type: org.openedx.learning.ccx.course.passing.status.updated.v1
 # .. event_name: CCX_COURSE_PASSING_STATUS_UPDATED
-# .. event_description: Emitted when a CCX course grade updates.
+# .. event_description: Emitted when a CCX course grade updates. Carries current course passing status for learner.
 # .. event_data: CcxCoursePassingStatusData
 CCX_COURSE_PASSING_STATUS_UPDATED = OpenEdxPublicSignal(
-    event_type="org.openedx.learning.ccx.course.passing.status.v1",
+    event_type="org.openedx.learning.ccx.course.passing.status.updated.v1",
     data={
         "course_passing_status": CcxCoursePassingStatusData,
     }
